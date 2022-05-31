@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 
 
-export default function Edit() {
+export default function EditScreen() {
 
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>

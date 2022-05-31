@@ -1,5 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -14,38 +12,45 @@ import CreateScreen from './components/projects/Create'
 import EditScreen from './components/projects/Edit'
 
 
-function HomeScreen() {
+function HomeScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Home Screen</Text>
-      <Button
+      <button
+        className='btn btn-primary mt-1'
         title="Go to Login"
-        onPress={() => navigation.navigate('Login')}
-      />
-      <Button
+        onClick={() => navigation.navigate('Login')}
+      >GO TO LOGIN</button>
+      <button
+        className='btn btn-primary mt-1'
         title="Go to Register"
-        onPress={() => navigation.navigate('Register')}
-      />
-      <Button
+        onClick={() => navigation.navigate('Register')}
+      >GO TO REGISTER</button>
+      <button
+        className='btn btn-primary mt-1'
         title="Go to Reset"
-        onPress={() => navigation.navigate('Reset')}
-      />
-      <Button
+        onClick={() => navigation.navigate('Reset')}
+      >GO TO RESET</button>
+      <button
+        className='btn btn-primary mt-1'
         title="Go to Logout"
-        onPress={() => navigation.navigate('Logout')}
-      />
-      <Button
+        onClick={() => navigation.navigate('Logout')}
+      >GO TO LOGOUT</button>
+      <button
+        className='btn btn-primary mt-1'
         title="Go to Projects"
-        onPress={() => navigation.navigate('Projects')}
-      />
-      <Button
+        onClick={() => navigation.navigate('Projects')}
+      >GO TO PROJECTS</button>
+      <button
+        className='btn btn-primary mt-1'
         title="Go to Create"
-        onPress={() => navigation.navigate('Create')}
-      />
-      <Button
+        onClick={() => navigation.navigate('Create')}
+      >GO TO CREATE</button>
+      <button
+        className='btn btn-primary mt-1'
         title="Go to Edit"
-        onPress={() => navigation.navigate('Edit')}
-      />
+        onClick={() => navigation.navigate('Edit')}
+      >GO TO EDIT</button>
 
     </View>
   );
