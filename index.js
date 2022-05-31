@@ -1,5 +1,5 @@
 import { registerRootComponent } from 'expo';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
 
 // registerRootComponent calls AppRegistry.registerComponent('main', () => App);
