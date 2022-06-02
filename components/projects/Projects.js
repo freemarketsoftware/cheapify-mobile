@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 
 
-export default function ProjectsScreen() {
+export default function ProjectsScreen({ navigation }) {
 
     const [projects, setProjects] = useState([])
 
@@ -13,9 +13,14 @@ export default function ProjectsScreen() {
             headers: {
                 'Content-Type': 'application/json',
             },
+            credentials: 'include'
         })
-        const json = await res.json()
-        setProjects(json.projects)
+        if(res.status === 200) {
+            const json = await res.json()
+            setProjects(json.projects)
+        } else {
+            console.log(res)
+        }
     }, [])
     // const projects = [
     //     {

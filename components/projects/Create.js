@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 
-export default function CreateScreen() {
+export default function CreateScreen({ navigation }) {
 
     return (
         <div className='create-project-component container'>

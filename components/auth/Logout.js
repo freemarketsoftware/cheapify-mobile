@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 
 
-export default function LogoutScreen() {
+export default function LogoutScreen({ navigation }) {
 
     return (
         <></>

@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Toast from 'react-native-toast-message';
 
 import LoginScreen from './components/auth/Login'
 import RegisterScreen from './components/auth/Register'
@@ -10,6 +11,7 @@ import ResetScreen from './components/auth/Reset'
 import ProjectsScreen from './components/projects/Projects'
 import CreateScreen from './components/projects/Create'
 import EditScreen from './components/projects/Edit'
+import Constants from "expo-constants";
 
 
 function HomeScreen({ navigation }) {
@@ -51,7 +53,7 @@ function HomeScreen({ navigation }) {
         title="Go to Edit"
         onClick={() => navigation.navigate('Edit')}
       >GO TO EDIT</button>
-
+      
     </View>
   );
 }
@@ -81,6 +83,7 @@ export default function App() {
         <Stack.Screen name="Edit" component={EditScreen} />
 
       </Stack.Navigator>
+      <Toast />
     </NavigationContainer>
   );
 }

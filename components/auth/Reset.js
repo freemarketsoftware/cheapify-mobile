@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 
 
-export default function ResetScreen() {
+export default function ResetScreen({ navigation }) {
 
     return (
         <div className="reset-component container">

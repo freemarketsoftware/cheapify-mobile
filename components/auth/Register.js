@@ -1,40 +1,94 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+import Toast from 'react-native-toast-message';
 
 
-export default function RegisterScreen() {
+export default function RegisterScreen({ navigation }) {
+
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [passwordConfirm, setPasswordConfirmation] = useState('')
+    
+    const handleEmailChange = (event) => {
+        setEmail(event.target.value)
+    }
+
+    const handlePasswordChange = (event) => {
+        setPassword(event.target.value)
+    }
+
+    const handlePasswordConfirmChange = (event) => {
+        setPasswordConfirmation(event.target.value)
+    }
+
+    // const submitRegister = (event) => {
+    //     event.preventDefault()
+    //     console.log('submitRegister')
+    //     console.log({email, password, passwordConfirm})
+    // }
+
+    const submitRegister = async (event) => {
+        event.preventDefault()
+        if(password !== passwordConfirm) {
+            Toast.show({
+                type: 'error',
+                text1: 'Mots de passe non identique',
+            });
+            return
+        }
+        const res = await fetch(window.ENDPOINT_URL + '/auth/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'access-control-allow-credentials': 'true'
+            },
+            body: JSON.stringify({ email, password }),
+        })
+        const result = await res.json()
+        if (res.status === 200) {
+            Toast.show({
+                type: 'success',
+                text1: 'Inscription réussie',
+            });
+        } else {
+            Toast.show({
+                type: 'error',
+                text1: 'Échec de l\'inscription',
+            });
+        }
+    }
 
     return (
-        <div class="register-component container">
-            <div class="row d-flex flex-row justify-content-center">
-                <div class="col-4 mt-4 card p-4">
+        <div className="register-component container">
+            <div className="row d-flex flex-row justify-content-center">
+                <div className="col-4 mt-4 card p-4">
                     <form id="registerForm">
                         <div>
                             <div>
                                 <label>Courriel</label>
-                                <input id="email" class="form-control" type="text" name="email" />
+                                <input onChange={handleEmailChange} className="form-control" type="text" name="email" />
                             </div>
-                            <div class="mt-2">
+                            <div className="mt-2">
                                 <label>Mot de passe</label>
-                                <input id="password" class="form-control" type="password" name="password" />
+                                <input onChange={handlePasswordChange} className="form-control" type="password" name="password" />
                             </div>
-                            <div class="mt-2">
+                            <div className="mt-2">
                                 <label>Confirmation du mot de passe</label>
-                                <input id="passwordConfirm" class="form-control" type="password" name="password" />
+                                <input onChange={handlePasswordConfirmChange} className="form-control" type="password" name="password" />
                             </div>
                         </div>
-                        <div class="mt-4 d-flex flex-row justify-content-center">
+                        <div className="mt-4 d-flex flex-row justify-content-center">
                             <div>
-                                <button id="register_submit-btn" class="btn btn-primary">S'inscrire</button>
+                                <button onClick={submitRegister} className="btn btn-primary">S'inscrire</button>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
-            <div class="row mt-4">
-                <div class="d-flex flex-row justify-content-center">
-                    <a href="/auth/login">Connection</a>
+            <div className="row mt-4">
+                <div className="d-flex flex-row justify-content-center">
+                    <a onClick={() => navigation.navigate('Login')} href="#">Connection</a>
                 </div>
             </div>
         </div>
